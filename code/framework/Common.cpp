@@ -2465,6 +2465,9 @@ void idCommonLocal::Frame( void ) {
 			if ( idAsyncNetwork::serverDedicated.GetInteger() != 1 ) {
 				session->GuiFrameEvents();
 				session->UpdateScreen( false );
+// jmarshall
+				session->RunSessionTic();
+// jmarshall end
 			}
 		} else {
 			session->Frame();
