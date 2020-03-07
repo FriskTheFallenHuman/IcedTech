@@ -302,8 +302,15 @@ idRenderModel *idRenderModelManagerLocal::GetModel( const char *modelName, bool 
 		model = new idRenderModelMD5;
 		model->InitFromFile( modelName );
 	} else if ( extension.Icmp( "md3" ) == 0 ) {
-		model = new idRenderModelMD3;
-		model->InitFromFile( modelName );
+		if (fileSystem->FileExists(modelName)) {
+			model = new idRenderModelMD3;
+			model->InitFromFile(modelName);
+		}
+		else {
+			// Make Default
+			model = new idRenderModelStatic;
+			model->InitFromFile(modelName);
+		}
 	} else if ( extension.Icmp( "prt" ) == 0  ) {
 		model = new idRenderModelPrt;
 		model->InitFromFile( modelName );
