@@ -751,11 +751,11 @@ entityDef player_base {
 	"weapon14_toggle"					"0"
 	"weapon14_allowempty"				"0"
 	
-	"def_weapon15"						"weapon_gravitygun"
+	"def_weapon15"						""
 	"weapon15_best"						"0"
-	"weapon15_cycle"					"1"
+	"weapon15_cycle"					"0"
 	"weapon15_toggle"					"0"
-	"weapon15_allowempty"				"1"
+	"weapon15_allowempty"				"0"
 
 	"max_ammo_shells"					"320"
 	"max_ammo_bullets"					"360"
