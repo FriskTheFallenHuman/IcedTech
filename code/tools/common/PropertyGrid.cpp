@@ -26,7 +26,7 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#include "tools_precompiled.h"
+#include "precompiled.h"
 #pragma hdrstop
 
 #include "../../sys/win32/win_local.h"
@@ -545,7 +545,7 @@ LRESULT CALLBACK rvPropertyGrid::WndProc ( HWND hWnd, UINT msg, WPARAM wParam, L
 			ScreenToClient ( hWnd, &point );
 			if ( point.x >= grid->mSplitter - 2 && point.x <= grid->mSplitter + 2 )
 			{
-				SetCursor ( LoadCursor ( NULL, MAKEINTRESOURCE(IDC_SIZEWE)));
+				SetCursor ( LoadCursor ( NULL, IDC_SIZEWE ) );
 				return TRUE;
 			}
 			break;

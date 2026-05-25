@@ -31,7 +31,9 @@ Contains the DxtDecoder implementation.
 ================================================================================================
 */
 
-#include "engine_precompiled.h"
+#include "precompiled.h"
+#pragma hdrstop
+
 #include "DXTCodec.h"
 
 #pragma optimize( "", on )

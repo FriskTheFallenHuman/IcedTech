@@ -26,7 +26,9 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#include "engine_precompiled.h"
+#include "precompiled.h"
+#pragma hdrstop
+
 #include "tr_local.h"
 
 idCVar r_showBuffers( "r_showBuffers", "0", CVAR_INTEGER, "" );

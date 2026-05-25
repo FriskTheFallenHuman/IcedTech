@@ -1,37 +1,36 @@
 # Tools.cmake
 
-include(CSharpUtilities)
+#include(CSharpUtilities)
 
-set(src_radiant_net 
-	tools/radiant.net/bin
-	tools/radiant.net/Editor.cs
-	tools/radiant.net/filelist.txt
-	tools/radiant.net/NativeAPI.cs
-	tools/radiant.net/packages.config
-	tools/radiant.net/RadiantHelpers.cs
-	tools/radiant.net/Forms/CamWndDialog.cs
-	tools/radiant.net/Forms/CamWndDialog.Designer.cs
-	tools/radiant.net/Forms/CamWndDialog.resx
-	tools/radiant.net/Forms/EntityCreateDialog.cs
-	tools/radiant.net/Forms/EntityCreateDialog.Designer.cs
-	tools/radiant.net/Forms/EntityCreateDialog.resx
-	tools/radiant.net/Forms/EntitySelection.cs
-	tools/radiant.net/Forms/EntitySelection.Designer.cs
-	tools/radiant.net/Forms/EntitySelection.resx
-	tools/radiant.net/Forms/InspectorDialog.cs
-	tools/radiant.net/Forms/InspectorDialog.Designer.cs
-	tools/radiant.net/Forms/InspectorDialog.resx
-	tools/radiant.net/Forms/ProgressDialog.cs
-	tools/radiant.net/Forms/ProgressDialog.Designer.cs
-	tools/radiant.net/Forms/ProgressDialog.resx
-	tools/radiant.net/Forms/XYWndDialog.cs
-	tools/radiant.net/Forms/XYWndDialog.Designer.cs
-	tools/radiant.net/Forms/XYWndDialog.resx
-	tools/radiant.net/Properties/AssemblyInfo.cs
-)
+#set(src_radiant_net 
+#	tools/radiant.net/bin
+#	tools/radiant.net/Editor.cs
+#	tools/radiant.net/filelist.txt
+#	tools/radiant.net/NativeAPI.cs
+#	tools/radiant.net/packages.config
+#	tools/radiant.net/RadiantHelpers.cs
+#	tools/radiant.net/Forms/CamWndDialog.cs
+#	tools/radiant.net/Forms/CamWndDialog.Designer.cs
+#	tools/radiant.net/Forms/CamWndDialog.resx
+#	tools/radiant.net/Forms/EntityCreateDialog.cs
+#	tools/radiant.net/Forms/EntityCreateDialog.Designer.cs
+#	tools/radiant.net/Forms/EntityCreateDialog.resx
+#	tools/radiant.net/Forms/EntitySelection.cs
+#	tools/radiant.net/Forms/EntitySelection.Designer.cs
+#	tools/radiant.net/Forms/EntitySelection.resx
+#	tools/radiant.net/Forms/InspectorDialog.cs
+#	tools/radiant.net/Forms/InspectorDialog.Designer.cs
+#	tools/radiant.net/Forms/InspectorDialog.resx
+#	tools/radiant.net/Forms/ProgressDialog.cs
+#	tools/radiant.net/Forms/ProgressDialog.Designer.cs
+#	tools/radiant.net/Forms/ProgressDialog.resx
+#	tools/radiant.net/Forms/XYWndDialog.cs
+#	tools/radiant.net/Forms/XYWndDialog.Designer.cs
+#	tools/radiant.net/Forms/XYWndDialog.resx
+#	tools/radiant.net/Properties/AssemblyInfo.cs
+#)
 
 set(src_tools
-	./tools/tools_precompiled.cpp
 	./tools/af/DialogAF.cpp
 	./tools/af/DialogAFBody.cpp
 	./tools/af/DialogAFConstraint.cpp
@@ -225,7 +224,6 @@ set(src_tools
 	./tools/sound/DialogSound.cpp
 	./tools/sound/DialogSoundGroup.cpp
 	./tools/edit_public.h
-	./tools/tools_precompiled.h
 	./tools/af/DialogAF.h
 	./tools/af/DialogAFBody.h
 	./tools/af/DialogAFConstraint.h
@@ -414,6 +412,24 @@ set(src_tools
 	./tools/sound/DialogSoundGroup.h
 )
 
+IF(MSVC)
+  source_group(Tools ./tools/.*)
+  source_group(Tools\\AF ./tools/af/.*)
+  source_group(Tools\\ComAfx ./tools/comafx/.*)
+  source_group(Tools\\Common ./tools/common/.*)
+  source_group(Tools\\Compilers ./tools/compilers/.*)
+  source_group(Tools\\Debugger ./tools/debugger/.*)
+  source_group(Tools\\Decl ./tools/decl/.*)
+  source_group(Tools\\Guied ./tools/guied/.*)
+  source_group(Tools\\MaterialEditor ./tools/materialeditor/.*)
+  source_group(Tools\\Particle ./tools/particle/.*)
+  source_group(Tools\\PDA ./tools/pda/.*)
+  source_group(Tools\\Radiant ./tools/radiant/.*)
+  source_group(Tools\\Script ./tools/script/.*)
+  source_group(Tools\\Sound ./tools/sound/.*)
+ENDIF()
+
+
 # Add radiant.net
 #add_library(RadiantDotNet SHARED ${src_radiant_net})
 #set_property(TARGET RadiantDotNet PROPERTY VS_DOTNET_TARGET_FRAMEWORK_VERSION "v4.6.1")
@@ -431,5 +447,10 @@ set(src_tools
 
 # Add tools library
 add_library(Tools STATIC ${src_tools})
-add_precompiled_header( Tools tools_precompiled.h  SOURCE_CXX ./tools/tools_precompiled.cpp )
-set_target_properties(Tools PROPERTIES LINK_FLAGS "/PDB:\"Tools.pdb\"")
+target_precompile_headers(Tools PRIVATE ./idlib/precompiled.h)
+
+if(MSVC)
+	set_property(TARGET Tools PROPERTY FOLDER libs)
+endif()
+
+set_cpu_arch(Tools)

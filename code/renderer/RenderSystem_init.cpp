@@ -26,7 +26,7 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#include "engine_precompiled.h"
+#include "precompiled.h"
 #pragma hdrstop
 
 #include "tr_local.h"
@@ -48,7 +48,7 @@ idCVar r_inhibitFragmentProgram( "r_inhibitFragmentProgram", "0", CVAR_RENDERER 
 idCVar r_glDriver( "r_glDriver", "", CVAR_RENDERER, "\"opengl32\", etc." );
 idCVar r_useLightPortalFlow( "r_useLightPortalFlow", "1", CVAR_RENDERER | CVAR_BOOL, "use a more precise area reference determination" );
 idCVar r_msaa_samples( "r_msaa_samples", "4", CVAR_RENDERER | CVAR_ARCHIVE | CVAR_INTEGER, "number of antialiasing samples" );
-idCVar r_mode( "r_mode", "3", CVAR_ARCHIVE | CVAR_RENDERER | CVAR_INTEGER, "video mode number" );
+idCVar r_mode( "r_mode", "5", CVAR_ARCHIVE | CVAR_RENDERER | CVAR_INTEGER, "video mode number" );
 idCVar r_displayRefresh( "r_displayRefresh", "0", CVAR_RENDERER | CVAR_INTEGER | CVAR_NOCHEAT, "optional display refresh rate option for vid mode", 0.0f, 200.0f );
 idCVar r_fullscreen( "r_fullscreen", "1", CVAR_RENDERER | CVAR_ARCHIVE | CVAR_BOOL, "0 = windowed, 1 = full screen" );
 idCVar r_customWidth( "r_customWidth", "720", CVAR_RENDERER | CVAR_ARCHIVE | CVAR_INTEGER, "custom screen width. set r_mode to -1 to activate" );
@@ -440,9 +440,41 @@ typedef struct vidmode_s {
 } vidmode_t;
 
 vidmode_t r_vidModes[] = {
-    { "Mode  0: 1280x720",		1280,	720 },
-    { "Mode  1: 1920x1080",		1920,	1080 },
-    { "Mode  2: 2560x1440",		2560,	1440 }
+	{ "Mode  0: 320x240",		320,	240 },
+	{ "Mode  1: 400x300",		400,	300 },
+	{ "Mode  2: 512x384",		512,	384 },
+	{ "Mode  3: 640x480",		640,	480 },
+	{ "Mode  4: 800x600",		800,	600 },
+	{ "Mode  5: 1024x768",		1024,	768 },
+	{ "Mode  6: 1152x864",		1152,	864 },
+	{ "Mode  7: 1280x1024",		1280,	1024 },
+	{ "Mode  8: 1600x1200",		1600,	1200 },
+	{ "Mode  9: 1280x720",		1280,	720 },
+	{ "Mode 10: 1366x768",		1366,	768 },
+	{ "Mode 11: 1440x900",		1440,	900 },
+	{ "Mode 12: 1400x1050",		1400,	1050 },
+	{ "Mode 13: 1600x900",		1600,	900 },
+	{ "Mode 14: 1680x1050",		1680,	1050 },
+	{ "Mode 15: 1920x1080",		1920,	1080 },
+	{ "Mode 16: 1920x1200",		1920,	1200 },
+	{ "Mode 17: 2048x1152",		2048,	1152 },
+	{ "Mode 18: 2560x1600",		2560,	1600 },
+	{ "Mode 19: 3200x2400",		3200,	2400 },
+	{ "Mode 20: 3840x2160",		3840,   2160 },
+	{ "Mode 21: 4096x2304",		4096,   2304 },
+	{ "Mode 22: 2880x1800",		2880,   1800 },
+	{ "Mode 23: 2560x1440",		2560,   1440 },
+	{ "Mode 24: 1440x1080",		1440,   1080 },
+	{ "Mode 25: 1280x800",		1280,	800 },
+	// 21:9 resolutions
+	{ "Mode 26: 2560x1080",		2560,   1080 },
+	{ "Mode 27: 3440x1440",		3440,   1440 },
+	{ "Mode 28: 3840x1600",		3840,   1600 },
+	{ "Mode 29: 5120x2160",		5120,   2160 },
+	// 32:9 resolutions
+	{ "Mode 30: 3840x1080",		3840,   1080 },
+	{ "Mode 31: 5120x1440",		5120,   1440 },
+	{ "Mode 32: 7680x2160",		7680,   2160 },
 };
 static int	s_numVidModes = ( sizeof( r_vidModes ) / sizeof( r_vidModes[0] ) );
 

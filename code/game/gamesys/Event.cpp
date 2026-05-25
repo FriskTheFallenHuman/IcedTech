@@ -32,7 +32,7 @@ Event are used for scheduling tasks and for linking script commands.
 
 */
 
-#include "game_precompiled.h"
+#include "precompiled.h"
 #pragma hdrstop
 
 #include "../Game_local.h"

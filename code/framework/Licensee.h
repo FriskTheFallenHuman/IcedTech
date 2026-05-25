@@ -34,9 +34,9 @@ If you have questions concerning this license or the applicable additional terms
 ===============================================================================
 */
 
-#define GAME_NAME						"Darklight"		// appears on window titles and errors
+#define GAME_NAME						"IcedTech"		// appears on window titles and errors
 
-#define ENGINE_VERSION					"Darklight 0.01"	// printed in console
+#define ENGINE_VERSION					"IcedTech 0.01"	// printed in console
 
 #define BUILD_TIME						__DATE__ " " __TIME__
 
@@ -50,7 +50,7 @@ If you have questions concerning this license or the applicable additional terms
 
 // filenames
 #define	CD_EXE							"doom.exe"
-#define CONFIG_FILE						"DarkLightConfig.cfg"
+#define CONFIG_FILE						"IcedTechConfig.cfg"
 
 // base folder where the source code lives
 #define SOURCE_CODE_BASE_FOLDER			"neo"

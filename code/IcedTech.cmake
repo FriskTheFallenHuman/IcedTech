@@ -1,10 +1,6 @@
-# DarkEngine.cmake
-#
+# IcedTech.cmake
 
 set(src_engine
-	# Precompiled Header
-	./framework/Engine_precompiled.cpp
-
 	# Collision System
 	./cm/CollisionModel_trace.cpp
 	./cm/CollisionModel.h
@@ -18,7 +14,6 @@ set(src_engine
 	./cm/CollisionModel_load.cpp
 
 	# Framework
-	./framework/async
 	./framework/BuildDefines.h
 	./framework/BuildVersion.h
 	./framework/CmdSystem.cpp
@@ -90,7 +85,7 @@ set(src_engine
 	./framework/async/ServerScan.cpp
 	./framework/async/ServerScan.h
 
-	#Renderer
+	# Renderer
 	./renderer/BinaryImage.cpp
 	./renderer/BinaryImage.h
 	./renderer/BinaryImageData.h
@@ -98,13 +93,11 @@ set(src_engine
 	./renderer/BufferObject.h
 	./renderer/Cinematic.cpp
 	./renderer/Cinematic.h
-	./renderer/Color
 	./renderer/draw_common.cpp
 	./renderer/draw_feedback.cpp
 	./renderer/draw_interaction.cpp
 	./renderer/draw_occlusion.cpp
 	./renderer/draw_shadow.cpp
-	./renderer/DXT
 	./renderer/GLMatrix.cpp
 	./renderer/GLMatrix.h
 	./renderer/GraphicsContext.h
@@ -121,7 +114,6 @@ set(src_engine
 	./renderer/Image_program.cpp
 	./renderer/Interaction.cpp
 	./renderer/Interaction.h
-	./renderer/jpeg-6
 	./renderer/Material.cpp
 	./renderer/Material.h
 	./renderer/MegaTexture.cpp
@@ -155,7 +147,6 @@ set(src_engine
 	./renderer/Model_prt.cpp
 	./renderer/Model_sprite.cpp
 	./renderer/Model_terrain.cpp
-	./renderer/qgllib
 	./renderer/RenderEntity.cpp
 	./renderer/RenderMatrix.cpp
 	./renderer/RenderMatrix.h
@@ -204,6 +195,286 @@ set(src_engine
 	./renderer/DXT/DXTCodec.h
 	./renderer/DXT/DXTDecoder.cpp
 	./renderer/DXT/DXTEncoder.cpp
+	./renderer/qgllib/qgllib.h
+
+	# Sound System
+	./sound/snd_emitter.cpp
+	./sound/snd_local.h
+	./sound/snd_shader.cpp
+	./sound/snd_system.cpp
+	./sound/snd_world.cpp
+	./sound/sound.h
+	./sound/SoundVoice.cpp
+	./sound/SoundVoice.h
+	./sound/WaveFile.cpp
+	./sound/WaveFile.h
+	./sound/XAudio2/XA2_SoundHardware.cpp
+	./sound/XAudio2/XA2_SoundHardware.h
+	./sound/XAudio2/XA2_SoundSample.cpp
+	./sound/XAudio2/XA2_SoundSample.h
+	./sound/XAudio2/XA2_SoundVoice.cpp
+	./sound/XAudio2/XA2_SoundVoice.h
+
+	# System
+	./sys/sys_intrinsics.h
+	./sys/sys_local.cpp
+	./sys/sys_local.h
+	./sys/sys_public.h
+	./sys/sys_threading.h
+
+	# UI
+	./ui/BindWindow.cpp
+	./ui/BindWindow.h
+	./ui/ChoiceWindow.cpp
+	./ui/ChoiceWindow.h
+	./ui/DeviceContext.cpp
+	./ui/DeviceContext.h
+	./ui/EditWindow.cpp
+	./ui/EditWindow.h
+	./ui/FieldWindow.cpp
+	./ui/FieldWindow.h
+	./ui/GameBearShootWindow.cpp
+	./ui/GameBearShootWindow.h
+	./ui/GameBustOutWindow.cpp
+	./ui/GameBustOutWindow.h
+	./ui/GameSSDWindow.cpp
+	./ui/GameSSDWindow.h
+	./ui/GuiScript.cpp
+	./ui/GuiScript.h
+	./ui/ListGUI.cpp
+	./ui/ListGUI.h
+	./ui/ListGUILocal.h
+	./ui/ListWindow.cpp
+	./ui/ListWindow.h
+	./ui/MarkerWindow.cpp
+	./ui/MarkerWindow.h
+	./ui/Rectangle.h
+	./ui/RegExp.cpp
+	./ui/RegExp.h
+	./ui/RegExp_old.h
+	./ui/RenderWindow.cpp
+	./ui/RenderWindow.h
+	./ui/SimpleWindow.cpp
+	./ui/SimpleWindow.h
+	./ui/SliderWindow.cpp
+	./ui/SliderWindow.h
+	./ui/UserInterface.cpp
+	./ui/UserInterface.h
+	./ui/UserInterfaceLocal.h
+	./ui/Window.cpp
+	./ui/Window.h
+	./ui/Winvar.cpp
+	./ui/Winvar.h
+)
+
+if(UNIX)
+	set(src_engine ${src_engine}
+		./sys/posix/posix_net.cpp
+		./sys/posix/posix_main.cpp
+		./sys/posix/posix_signal.cpp
+		./sys/posix/posix_threads.cpp
+		./sys/linux/stack.cpp
+		./sys/linux/main.cpp
+		./sys/stub/util_stub.cpp
+		./sys/linux/glimp.cpp
+		./sys/posix/posix_input.cpp
+		./sys/linux/input.cpp
+		./sys/linux/libXNVCtrl/NVCtrl.c
+		./tools/guied/GEWindowWrapper_stub.cpp
+		./sys/linux/sound_alsa.cpp
+		./sys/linux/sound.cpp
+	)
+endif()
+
+if(WIN32)
+	set(src_engine ${src_engine}
+		./sys/win32/eax.h
+		./sys/win32/eaxguid.lib
+		./sys/win32/win_cpu.cpp
+		./sys/win32/win_glimp.cpp
+		./sys/win32/win_input.cpp
+		./sys/win32/win_local.h
+		./sys/win32/win_main.cpp
+		./sys/win32/win_net.cpp
+		./sys/win32/win_qgl.cpp
+		./sys/win32/win_shared.cpp
+		./sys/win32/win_snd.cpp
+		./sys/win32/win_syscon.cpp
+		./sys/win32/win_taskkeyhook.cpp
+		./sys/win32/win_thread.cpp
+		./sys/win32/win_wndproc.cpp
+		./sys/win32/rc/CreateResourceIDs.cpp
+		./sys/win32/rc/CreateResourceIDs.h
+		./sys/win32/rc/doom_resource.h
+		./sys/win32/rc/AFEditor_resource.h
+		./sys/win32/rc/Common_resource.h
+		./sys/win32/rc/Debugger_resource.h
+		./sys/win32/rc/DeclEditor_resource.h
+		./sys/win32/rc/GuiEd_resource.h
+		./sys/win32/rc/MaterialEditor_Resource.h
+		./sys/win32/rc/ParticleEditor_resource.h
+		./sys/win32/rc/PDAEditor_resource.h
+		./sys/win32/rc/PropTree_resource.h
+		./sys/win32/rc/Radiant_resource.h
+		./sys/win32/rc/ScriptEditor_resource.h
+		./sys/win32/rc/SoundEditor_resource.h
+		./sys/win32/rc/res/BEVEL.BMP
+		./sys/win32/rc/res/BITMAP2.BMP
+		./sys/win32/rc/res/BMP00001.BMP
+		./sys/win32/rc/res/bmp00002.bmp
+		./sys/win32/rc/res/bmp00003.bmp
+		./sys/win32/rc/res/bmp00004.bmp
+		./sys/win32/rc/res/bmp00005.bmp
+		./sys/win32/rc/res/BMP0002.BMP
+		./sys/win32/rc/res/cchsb.bmp
+		./sys/win32/rc/res/ccrgb.bmp
+		./sys/win32/rc/res/dbg_back.bmp
+		./sys/win32/rc/res/dbg_breakpoint.ico
+		./sys/win32/rc/res/dbg_current.ico
+		./sys/win32/rc/res/dbg_currentline.ico
+		./sys/win32/rc/res/dbg_empty.ico
+		./sys/win32/rc/res/dbg_open.bmp
+		./sys/win32/rc/res/dbg_toolbar.bmp
+		./sys/win32/rc/res/DEFTEX.WAL
+		./sys/win32/rc/res/doom.ico
+		./sys/win32/rc/res/ENDCAP.BMP
+		./sys/win32/rc/res/fpoint.cur
+		./sys/win32/rc/res/fxeditor.ico
+		./sys/win32/rc/res/fxed_link.ico
+		./sys/win32/rc/res/fxed_toolbar.bmp
+		./sys/win32/rc/res/GetString.htm
+		./sys/win32/rc/res/guied.ico
+		./sys/win32/rc/res/guied_collapse.ico
+		./sys/win32/rc/res/guied_expand.ico
+		./sys/win32/rc/res/guied_hand.cur
+		./sys/win32/rc/res/guied_nav_visible.ico
+		./sys/win32/rc/res/guied_nav_visibledisabled.ico
+		./sys/win32/rc/res/guied_scripts.ico
+		./sys/win32/rc/res/guied_scripts_white.ico
+		./sys/win32/rc/res/guied_viewer_toolbar.bmp
+		./sys/win32/rc/res/IBEVEL.BMP
+		./sys/win32/rc/res/icon2.ico
+		./sys/win32/rc/res/IENDCAP.BMP
+		./sys/win32/rc/res/logo_sm3dfx.bmp
+		./sys/win32/rc/res/matedtree.bmp
+		./sys/win32/rc/res/MaterialEditor.ico
+		./sys/win32/rc/res/MEFileToolbar.bmp
+		./sys/win32/rc/res/MEtoolbar.bmp
+		./sys/win32/rc/res/me_disabled_icon.ico
+		./sys/win32/rc/res/me_enabled.ico
+		./sys/win32/rc/res/me_off_icon.ico
+		./sys/win32/rc/res/me_on_icon.ico
+		./sys/win32/rc/res/PropTree.rc2
+		./sys/win32/rc/res/Q.BMP
+		./sys/win32/rc/res/qe3.ico
+		./sys/win32/rc/res/Radiant.ico
+		./sys/win32/rc/res/RADIANT3.GIF
+		./sys/win32/rc/res/RadiantDoc.ico
+		./sys/win32/rc/res/shaderbar.bmp
+		./sys/win32/rc/res/shaderdoc.ico
+		./sys/win32/rc/res/shaderframe.ico
+		./sys/win32/rc/res/spliter.cur
+		./sys/win32/rc/res/Toolbar.bmp
+		./sys/win32/rc/res/TOOLBAR1.BMP
+		./sys/win32/rc/res/TOOLBAR2.BMP
+		./sys/win32/rc/res/VIEWDEFA.BMP
+		./sys/win32/rc/res/VIEWOPPO.BMP
+	)
+	
+	if(MSVC)
+		set(src_engine ${src_engine} ./sys/win32/rc/doom.rc )
+
+		source_group(CM ./cm/.*)
+		source_group(Framework ./framework/.*)
+		source_group(Framework\\async ./framework/async/.*)
+		source_group(Renderer ./renderer/.*)
+		source_group(Renderer\\DXT ./renderer/DXT/.*)
+		source_group(Renderer\\Color ./renderer/Color/.*)
+		source_group(Sound ./sound/.*)
+		source_group(Sound\\XAudio2 ./sound/XAudio2/.*)
+		source_group(Sys ./sys/.*)
+		source_group(Sys\\win32 ./sys/win32/.*)
+		source_group(Sys\\win32\\RC ./sys/win32/rc/.*)
+		source_group(Sys\\win32\\RC\\Resources ./sys/win32/rc/res/.*)
+		source_group(Ui ./ui/.*)
+	endif()
+
+	# Find Windows SDK
+	find_package(WindowsSDK REQUIRED)
+	get_windowssdk_library_dirs("${WINDOWSSDK_LATEST_DIR}" WINSDK_LIB_DIRS)
+
+	set(WINSDK_LIB_DIR "")
+	foreach(_dir ${WINSDK_LIB_DIRS})
+		if(EXISTS "${_dir}/dinput8.lib")
+			set(WINSDK_LIB_DIR "${_dir}")
+			break()
+		endif()
+	endforeach()
+
+	set(EXTERNAL_LIBS
+		opengl32
+		Glu32
+		Dbghelp
+		wsock32
+		iphlpapi
+		winmm
+		"${WINSDK_LIB_DIR}/dinput8.lib"
+		"${WINSDK_LIB_DIR}/dsound.lib"
+		"${WINSDK_LIB_DIR}/dxguid.lib")
+endif()
+
+if(UNIX)
+	include_directories(./sys/linux/oss/include)
+	add_definitions(-Dlinux)
+	add_definitions(-DXTHREADS)
+	FIND_PACKAGE(OpenGL REQUIRED)
+	FIND_PACKAGE(OpenAL REQUIRED)
+
+	set(EXTERNAL_LIBS pthread dl X11 Xext Xxf86vm	${OPENAL_LIBRARY} ${OPENGL_gl_LIBRARY})
+	set(LINK_LIBS idlib External ${EXTERNAL_LIBS})
+else()
+	set(LINK_LIBS idlib External ${EXTERNAL_LIBS})
+	if(ID_ALLOW_TOOLS)
+		set(LINK_LIBS ${LINK_LIBS} Tools)
+	endif()
+endif()
+
+set(src_external
+	./renderer/qgllib/glew.c
+	./renderer/qgllib/glew.h
+	./renderer/qgllib/wglew.h
+
+	./external/zlib/adler32.c
+	./external/zlib/compress.c
+	./external/zlib/crc32.c
+	./external/zlib/deflate.c
+	./external/zlib/gzclose.c
+	./external/zlib/gzlib.c
+	./external/zlib/gzread.c
+	./external/zlib/gzwrite.c
+	./external/zlib/infback.c
+	./external/zlib/inffast.c
+	./external/zlib/inflate.c
+	./external/zlib/inftrees.c
+	./external/zlib/trees.c
+	./external/zlib/uncompr.c
+	./external/zlib/zutil.c
+	./external/zlib/crc32.h
+	./external/zlib/deflate.h	
+	./external/zlib/gzguts.h
+	./external/zlib/inffast.h
+	./external/zlib/inffixed.h
+	./external/zlib/inflate.h
+	./external/zlib/inftrees.h
+	./external/zlib/trees.h
+	./external/zlib/zconf.h
+	./external/zlib/zconf.h.in
+	./external/zlib/zlib.h
+	./external/zlib/zutil.h
+	./external/zlib/minizip/ioapi.h
+	./external/zlib/minizip/unzip.h
+	./external/zlib/minizip/zip.h
+
 	./renderer/jpeg-6/jcapimin.c
 	./renderer/jpeg-6/jcapistd.c
 	./renderer/jpeg-6/jccoefct.c
@@ -261,197 +532,6 @@ set(src_engine
 	./renderer/jpeg-6/jquant2.c
 	./renderer/jpeg-6/jutils.c
 	./renderer/jpeg-6/jversion.h
-	./renderer/qgllib/glew.c
-	./renderer/qgllib/glew.h
-	./renderer/qgllib/qgllib.h
-	./renderer/qgllib/wglew.h
-
-	# Sound System
-	./sound/snd_emitter.cpp
-	./sound/snd_local.h
-	./sound/snd_shader.cpp
-	./sound/snd_system.cpp
-	./sound/snd_world.cpp
-	./sound/sound.h
-	./sound/SoundVoice.cpp
-	./sound/SoundVoice.h
-	./sound/WaveFile.cpp
-	./sound/WaveFile.h
-	./sound/XAudio2
-	./sound/XAudio2/XA2_SoundHardware.cpp
-	./sound/XAudio2/XA2_SoundHardware.h
-	./sound/XAudio2/XA2_SoundSample.cpp
-	./sound/XAudio2/XA2_SoundSample.h
-	./sound/XAudio2/XA2_SoundVoice.cpp
-	./sound/XAudio2/XA2_SoundVoice.h
-
-	# System
-	./sys/sys_intrinsics.h
-	./sys/sys_local.cpp
-	./sys/sys_local.h
-	./sys/sys_public.h
-	./sys/sys_threading.h
-	./sys/win32/eax.h
-	./sys/win32/eaxguid.lib
-	./sys/win32/rc
-	./sys/win32/sdk
-	./sys/win32/win_cpu.cpp
-	./sys/win32/win_glimp.cpp
-	./sys/win32/win_input.cpp
-	./sys/win32/win_local.h
-	./sys/win32/win_main.cpp
-	./sys/win32/win_net.cpp
-	./sys/win32/win_qgl.cpp
-	./sys/win32/win_shared.cpp
-	./sys/win32/win_snd.cpp
-	./sys/win32/win_syscon.cpp
-	./sys/win32/win_taskkeyhook.cpp
-	./sys/win32/win_thread.cpp
-	./sys/win32/win_wndproc.cpp
-	./sys/win32/rc/CreateResourceIDs.cpp
-
-	./ui/BindWindow.cpp
-	./ui/BindWindow.h
-	./ui/ChoiceWindow.cpp
-	./ui/ChoiceWindow.h
-	./ui/DeviceContext.cpp
-	./ui/DeviceContext.h
-	./ui/EditWindow.cpp
-	./ui/EditWindow.h
-	./ui/FieldWindow.cpp
-	./ui/FieldWindow.h
-	./ui/GameBearShootWindow.cpp
-	./ui/GameBearShootWindow.h
-	./ui/GameBustOutWindow.cpp
-	./ui/GameBustOutWindow.h
-	./ui/GameSSDWindow.cpp
-	./ui/GameSSDWindow.h
-	./ui/GuiScript.cpp
-	./ui/GuiScript.h
-	./ui/ListGUI.cpp
-	./ui/ListGUI.h
-	./ui/ListGUILocal.h
-	./ui/ListWindow.cpp
-	./ui/ListWindow.h
-	./ui/MarkerWindow.cpp
-	./ui/MarkerWindow.h
-	./ui/Rectangle.h
-	./ui/RegExp.cpp
-	./ui/RegExp.h
-	./ui/RegExp_old.h
-	./ui/RenderWindow.cpp
-	./ui/RenderWindow.h
-	./ui/SimpleWindow.cpp
-	./ui/SimpleWindow.h
-	./ui/SliderWindow.cpp
-	./ui/SliderWindow.h
-	./ui/UserInterface.cpp
-	./ui/UserInterface.h
-	./ui/UserInterfaceLocal.h
-	./ui/Window.cpp
-	./ui/Window.h
-	./ui/Winvar.cpp
-	./ui/Winvar.h
-)
-
-set(src_launcher
-	./sys/win32/win_launcher.cpp
-	./sys/win32/rc/doom.rc
-	./sys/win32/rc/doom_resource.h
-	./sys/win32/rc/res/BEVEL.BMP
-	./sys/win32/rc/res/BITMAP2.BMP
-	./sys/win32/rc/res/BMP00001.BMP
-	./sys/win32/rc/res/bmp00002.bmp
-	./sys/win32/rc/res/bmp00003.bmp
-	./sys/win32/rc/res/bmp00004.bmp
-	./sys/win32/rc/res/bmp00005.bmp
-	./sys/win32/rc/res/BMP0002.BMP
-	./sys/win32/rc/res/cchsb.bmp
-	./sys/win32/rc/res/ccrgb.bmp
-	./sys/win32/rc/res/dbg_back.bmp
-	./sys/win32/rc/res/dbg_breakpoint.ico
-	./sys/win32/rc/res/dbg_current.ico
-	./sys/win32/rc/res/dbg_currentline.ico
-	./sys/win32/rc/res/dbg_empty.ico
-	./sys/win32/rc/res/dbg_open.bmp
-	./sys/win32/rc/res/dbg_toolbar.bmp
-	./sys/win32/rc/res/DEFTEX.WAL
-	./sys/win32/rc/res/doom.ico
-	./sys/win32/rc/res/ENDCAP.BMP
-	./sys/win32/rc/res/fpoint.cur
-	./sys/win32/rc/res/fxeditor.ico
-	./sys/win32/rc/res/fxed_link.ico
-	./sys/win32/rc/res/fxed_toolbar.bmp
-	./sys/win32/rc/res/GetString.htm
-	./sys/win32/rc/res/guied.ico
-	./sys/win32/rc/res/guied_collapse.ico
-	./sys/win32/rc/res/guied_expand.ico
-	./sys/win32/rc/res/guied_hand.cur
-	./sys/win32/rc/res/guied_nav_visible.ico
-	./sys/win32/rc/res/guied_nav_visibledisabled.ico
-	./sys/win32/rc/res/guied_scripts.ico
-	./sys/win32/rc/res/guied_scripts_white.ico
-	./sys/win32/rc/res/guied_viewer_toolbar.bmp
-	./sys/win32/rc/res/IBEVEL.BMP
-	./sys/win32/rc/res/icon2.ico
-	./sys/win32/rc/res/IENDCAP.BMP
-	./sys/win32/rc/res/logo_sm3dfx.bmp
-	./sys/win32/rc/res/matedtree.bmp
-	./sys/win32/rc/res/MaterialEditor.ico
-	./sys/win32/rc/res/MEFileToolbar.bmp
-	./sys/win32/rc/res/MEtoolbar.bmp
-	./sys/win32/rc/res/me_disabled_icon.ico
-	./sys/win32/rc/res/me_enabled.ico
-	./sys/win32/rc/res/me_off_icon.ico
-	./sys/win32/rc/res/me_on_icon.ico
-	./sys/win32/rc/res/PropTree.rc2
-	./sys/win32/rc/res/Q.BMP
-	./sys/win32/rc/res/qe3.ico
-	./sys/win32/rc/res/Radiant.ico
-	./sys/win32/rc/res/RADIANT3.GIF
-	./sys/win32/rc/res/RadiantDoc.ico
-	./sys/win32/rc/res/shaderbar.bmp
-	./sys/win32/rc/res/shaderdoc.ico
-	./sys/win32/rc/res/shaderframe.ico
-	./sys/win32/rc/res/spliter.cur
-	./sys/win32/rc/res/Toolbar.bmp
-	./sys/win32/rc/res/TOOLBAR1.BMP
-	./sys/win32/rc/res/TOOLBAR2.BMP
-	./sys/win32/rc/res/VIEWDEFA.BMP
-	./sys/win32/rc/res/VIEWOPPO.BMP
-)
-
-set(src_external
-	./external/zlib/adler32.c
-	./external/zlib/compress.c
-	./external/zlib/crc32.c
-	./external/zlib/deflate.c
-	./external/zlib/gzclose.c
-	./external/zlib/gzlib.c
-	./external/zlib/gzread.c
-	./external/zlib/gzwrite.c
-	./external/zlib/infback.c
-	./external/zlib/inffast.c
-	./external/zlib/inflate.c
-	./external/zlib/inftrees.c
-	./external/zlib/trees.c
-	./external/zlib/uncompr.c
-	./external/zlib/zutil.c
-	./external/zlib/crc32.h
-	./external/zlib/deflate.h	
-	./external/zlib/gzguts.h
-	./external/zlib/inffast.h
-	./external/zlib/inffixed.h
-	./external/zlib/inflate.h
-	./external/zlib/inftrees.h
-	./external/zlib/trees.h
-	./external/zlib/zconf.h
-	./external/zlib/zconf.h.in
-	./external/zlib/zlib.h
-	./external/zlib/zutil.h
-	./external/zlib/minizip/ioapi.h
-	./external/zlib/minizip/unzip.h
-	./external/zlib/minizip/zip.h
 
 	./external/png/png.c
 	./external/png/pngerror.c
@@ -484,6 +564,14 @@ set(src_external
 
 )
 
+IF(MSVC)
+  source_group(External\\Glew ./renderer/qgllib/.*)
+  source_group(External\\ZLib ./external/ZLib/.*)
+  source_group(External\\Png ./external/png/.*)
+  source_group(External\\jpeg6 ./renderer/jpeg-6/.*)
+  source_group(External\\IrrXml ./external/irrxml/src/.*)
+ENDIF()
+
 # Engine Directories
 include_directories(./external/dxsdk/Include)
 include_directories(./external/zlib)
@@ -492,16 +580,30 @@ include_directories(./external/irrxml/src)
 
 # External Static Library
 add_library(External STATIC ${src_external})
-set_target_properties(External PROPERTIES LINK_FLAGS "/PDB:\"External.pdb\"")
+set_property(TARGET External PROPERTY FOLDER libs)
+set_cpu_arch(External)
 
-# DoomDLL Project
-add_definitions(-D__DOOM_DLL__)
-add_library(DoomDLL SHARED  ${src_engine} )
-target_link_libraries(DoomDLL idLib External Tools "opengl32.lib" "dxguid.lib" "glu32.lib" "dinput8.lib" "winmm.lib" "wsock32.lib" "dbghelp.lib" "iphlpapi.lib")
-add_precompiled_header( DoomDLL Engine_precompiled.h  SOURCE_CXX ./framework/Engine_precompiled.cpp )
-set_target_properties(DoomDLL PROPERTIES OUTPUT_NAME "DoomDLL" LINK_FLAGS "/PDB:\"DoomDLL.pdb\" /LARGEADDRESSAWARE /DEF:${CMAKE_CURRENT_SOURCE_DIR}/exports.def")
+# DoomEXE Project
+set(TARGET_NAME "DoomEXE")
+add_executable(${TARGET_NAME} ${src_engine})
+target_link_libraries(${TARGET_NAME} ${LINK_LIBS})
+target_precompile_headers(${TARGET_NAME} PRIVATE ./idlib/precompiled.h)
 
-# Launcher Project
-add_executable(Launcher ${src_launcher})
-target_link_libraries(Launcher DoomDLL)
-set_target_properties(Launcher PROPERTIES OUTPUT_NAME "Darklight" LINK_FLAGS "/SUBSYSTEM:WINDOWS /PDB:\"Darklight.pdb\"")
+if(CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT ID_ENFORCE32BIT)
+	set(GAME_DEP "gamex64")
+else()
+	set(GAME_DEP "gamex86")
+endif()
+add_dependencies(${TARGET_NAME} ${GAME_DEP})
+
+if(MSVC)
+	set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME "IcedTech")
+
+	set_target_properties(${TARGET_NAME} PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS")
+	set_target_properties(${TARGET_NAME} PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:WINDOWS")
+	set_target_properties(${TARGET_NAME} PROPERTIES LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:WINDOWS")
+
+	set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER exes)
+endif()
+
+set_cpu_arch(${TARGET_NAME})

@@ -1,7 +1,9 @@
 // Game_parallel.cpp
 //
 
-#include "game_precompiled.h"
+#include "precompiled.h"
+#pragma hdrstop
+
 #include "Game_local.h"
 
 /*

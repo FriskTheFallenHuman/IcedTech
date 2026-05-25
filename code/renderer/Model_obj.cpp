@@ -1,7 +1,9 @@
 // Model_obj.cpp
 //
 
-#include "engine_precompiled.h"
+#include "precompiled.h"
+#pragma hdrstop
+
 #include "tr_local.h"
 #include "Model_local.h"
 

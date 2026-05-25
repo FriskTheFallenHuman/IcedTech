@@ -37,29 +37,14 @@ If you have questions concerning this license or the applicable additional terms
 
 #ifdef _WIN32
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// prevent auto literal to string conversion
-
 #ifndef _D3SDK
 #ifndef GAME_DLL
 
 #define WINVER				0x501
 
-#if 0
-// Dedicated server hits unresolved when trying to link this way now. Likely because of the 2010/Win7 transition? - TTimo
-
-#ifdef	ID_DEDICATED
-// dedicated sets windows version here
-#define	_WIN32_WINNT WINVER
-#define	WIN32_LEAN_AND_MEAN
-#else
-// non-dedicated includes MFC and sets windows version here
-#include "../tools/comafx/StdAfx.h"			// this will go away when MFC goes away
-#endif
-
-#else
-
+#ifdef ID_ALLOW_TOOLS
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS // prevent auto literal to string conversion
 #include "../tools/comafx/StdAfx.h"
-
 #endif
 
 #include <winsock2.h>
@@ -75,11 +60,15 @@ If you have questions concerning this license or the applicable additional terms
 #endif /* !GAME_DLL */
 #endif /* !_D3SDK */
 
+#include <intrin.h>							// needed for intrinsics like _mm_setzero_si28
+
 #pragma warning(disable : 4100)				// unreferenced formal parameter
 #pragma warning(disable : 4244)				// conversion to smaller type, possible loss of data
 #pragma warning(disable : 4714)				// function marked as __forceinline not inlined
 #pragma warning(disable : 4996)				// unsafe string operations
 
+
+#include <xmmintrin.h>						// needed for SIMD instructions like MXCSR manipulation
 #include <malloc.h>							// no malloc.h on mac or unix
 #include <windows.h>						// for gl.h
 #undef FindText								// stupid namespace poluting Microsoft monkeys

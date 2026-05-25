@@ -26,7 +26,7 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#include "game_precompiled.h"
+#include "precompiled.h"
 #pragma hdrstop
 
 #include "../Game_local.h"
@@ -51,7 +51,7 @@ const char *ui_skinArgs[]			= { "skins/characters/player/marine_mp", "skins/char
 const char *ui_teamArgs[]			= { "Red", "Blue", NULL }; 
 
 struct gameVersion_s {
-	gameVersion_s( void ) { sprintf( string, "%s.%d%s %s %s", ENGINE_VERSION, BUILD_NUMBER, BUILD_DEBUG, BUILD_STRING, __DATE__, __TIME__ ); }
+	gameVersion_s( void ) { sprintf( string, "%s.%d%s %s %s %s", ENGINE_VERSION, BUILD_NUMBER, BUILD_DEBUG, BUILD_STRING, __DATE__, __TIME__ ); }
 	char	string[256];
 } gameVersion;
 

@@ -1,7 +1,7 @@
 // MegaGen.cpp
 //
 
-#include "tools_precompiled.h"
+#include "precompiled.h"
 #pragma hdrstop
 
 #include "MegaGen.h"
@@ -24,7 +24,6 @@ WriteTargaHeader
 void WriteTargaHeader(idFile *megaTarga, int width, int height)
 {
 	byte	buffer[18];
-	int		i;
 
 	memset(buffer, 0, 18);
 	buffer[2] = 2;		// uncompressed type

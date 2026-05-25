@@ -25,7 +25,9 @@ If you have questions concerning this license or the applicable additional terms
 
 ===========================================================================
 */
-#include "engine_precompiled.h"
+#include "precompiled.h"
+#pragma hdrstop
+
 #include "ParallelJobListLocal.h"
 
 idCVar jobs_prioritize("jobs_prioritize", "1", CVAR_BOOL | CVAR_NOCHEAT, "prioritize job lists");
