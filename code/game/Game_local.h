@@ -61,8 +61,6 @@ extern idSoundWorld *				gameSoundWorld;
 // the "gameversion" client command will print this plus compile date
 #define	GAME_VERSION		"baseDOOM-1"
 
-#define GAME_FRAMETIME	0.016		// 16 milliseconds
-
 // classes used by idGameLocal
 class idEntity;
 class idActor;
@@ -247,11 +245,6 @@ struct rvmGameRender_t {
 	const idMaterial		*noPostProcessMaterial;
 
 	int						feedbackBufferId;
-};
-
-struct rvmGameDelayRemoveEntry_t {
-	int32_t removeTime;
-	idEntity *entity;
 };
 
 //============================================================================
@@ -486,8 +479,6 @@ public:
 
 	bool					NeedRestart();
 
-	void					DelayRemoveEntity(idEntity *entity, int delay);
-
 private:
 	const static int		INITIAL_SPAWN_COUNT = 1;
 
@@ -604,10 +595,6 @@ private:
 	void					ShutdownJobSystem(void);
 
 	idParallelJobList		*gameParallelJobList;
-
-// jmarshall
-	idList<rvmGameDelayRemoveEntry_t> delayRemoveEntities;
-// jmarshall end
 };
 
 //============================================================================
@@ -772,19 +759,6 @@ const int	CINEMATIC_SKIP_DELAY	= SEC2MS( 2.0f );
 
 #include "ai/AI.h"
 #include "anim/Anim_Testmodel.h"
-
-// jmarshall
-#include "weapons/Weapon_fist.h"
-#include "weapons/Weapon_pistol.h"
-#include "weapons/Weapon_flashlight.h"
-#include "weapons/Weapon_pda.h"
-#include "weapons/Weapon_shotgun.h"
-#include "weapons/Weapon_machinegun.h"
-#include "weapons/Weapon_plasmagun.h"
-#include "weapons/Weapon_chaingun.h"
-#include "weapons/Weapon_rocketlauncher.h"
-#include "weapons/Weapon_bfg.h"
-// jmarshall end
 
 #include "script/Script_Compiler.h"
 #include "script/Script_Interpreter.h"

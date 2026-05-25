@@ -2780,18 +2780,19 @@ void idPlayer::FireWeapon( void ) {
 		}
 	}
 
-	if (weapon.GetEntity()->AmmoInClip() || weapon.GetEntity()->AmmoAvailable()) {
-		AI_ATTACK_HELD = true;
-		weapon.GetEntity()->BeginAttack();
-		if ((weapon_soulcube >= 0) && (currentWeapon == weapon_soulcube)) {
-			if (hud) {
-				hud->HandleNamedEvent("soulCubeNotReady");
+	if ( !hiddenWeapon && weapon.GetEntity()->IsReady() ) {
+		if ( weapon.GetEntity()->AmmoInClip() || weapon.GetEntity()->AmmoAvailable() ) {
+			AI_ATTACK_HELD = true;
+			weapon.GetEntity()->BeginAttack();
+			if ( ( weapon_soulcube >= 0 ) && ( currentWeapon == weapon_soulcube ) ) {
+				if ( hud ) {
+					hud->HandleNamedEvent( "soulCubeNotReady" );
+				}
+				SelectWeapon( previousWeapon, false );
 			}
-			SelectWeapon(previousWeapon, false);
+		} else {
+			NextBestWeapon();
 		}
-	}
-	else {
-		NextBestWeapon();
 	}
 
 	if ( hud ) {
@@ -3843,8 +3844,7 @@ void idPlayer::Weapon_Combat( void ) {
 		} else {
 			weapon.GetEntity()->PutAway();
 
-			if(weapon.GetEntity()->IsHolstered())
-			{
+			if ( weapon.GetEntity()->IsHolstered() ) {
 				assert( idealWeapon >= 0 );
 				assert( idealWeapon < MAX_WEAPONS );
 

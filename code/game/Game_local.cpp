@@ -2205,16 +2205,6 @@ gameReturn_t idGameLocal::RunFrame( const usercmd_t *clientCmds ) {
 		}
 #endif
 
-// jmarshall
-		for(int i = 0; i < delayRemoveEntities.Num(); i++)
-		{
-			if(gameLocal.time > delayRemoveEntities[i].removeTime) {
-				delayRemoveEntities[i].entity->PostEventMS(&EV_Remove, 0);
-				delayRemoveEntities.RemoveIndex(i);
-			}
-		}
-// jmarshall end
-
 		// make sure the random number counter is used each frame so random events
 		// are influenced by the player's actions
 		random.RandomInt();
@@ -4380,16 +4370,3 @@ idGameLocal::GetMapLoadingGUI
 */
 void idGameLocal::GetMapLoadingGUI( char gui[ MAX_STRING_CHARS ] ) { }
 
-// jmarshall
-/*
-===============
-idGameLocal::DelayRemoveEntity
-===============
-*/
-void idGameLocal::DelayRemoveEntity(idEntity *entity, int delay) {
-	rvmGameDelayRemoveEntry_t entry;
-	entry.entity = entity;
-	entry.removeTime = gameLocal.time + delay;
-	delayRemoveEntities.Append(entry);
-}
-// jmarshall end
